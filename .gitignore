@@ -1,9 +1,5 @@
 node_modules
+build
 lib
 *.log
-website/src/flux/docs/
-website/core/metadata.js
-flow/include
 
-/js/bundle.js
-/js/bundle.min.js
