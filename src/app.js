@@ -2,11 +2,16 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Header from './components/Header.react';
+import Footer from './components/Footer.react';
 
 export default class App extends React.Component {
 	render() {
 		return (
-			<h1>Hello, world!</h1>
+			<div>
+				<Header />
+				<Footer />
+			</div>
 		);
 	}
 }
