@@ -1,14 +1,15 @@
 'use strict';
 
 import React from 'react';
-import ReactDOM from 'react-dom';
+import AppBar from 'material-ui/lib/app-bar';
 
 export default class Header extends React.Component {
 	render() {
 		return (
-			<header>
-				<h1>Hello, world!</h1>
-			</header>
+			<AppBar
+				title="react step by step"
+				iconClassNameRight="muidocs-icon-navigation-expand-more"
+			/>
 		);
 	}
 }
