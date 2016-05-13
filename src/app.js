@@ -2,18 +2,26 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Router, Route, hashHistory } from 'react-router';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 import Header from './components/Header.react';
 import Items from './components/Items.react';
 import Item from './components/Item.react';
-import { Router, Route, hashHistory } from 'react-router';
+
+injectTapEventPlugin();
 
 export default class App extends React.Component {
 	render() {
 		return (
-			<div>
-				<Header />
-				{this.props.children}
-			</div>
+			<MuiThemeProvider muiTheme={getMuiTheme()}>
+				<div>
+					<Header title="react-step-by-step"/>
+					{this.props.children}
+				</div>
+			</MuiThemeProvider>
 		);
 	}
 }

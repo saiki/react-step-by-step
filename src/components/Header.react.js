@@ -1,17 +1,33 @@
 'use strict';
 
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Link } from 'react-router';
+import AppBar from 'material-ui/AppBar';
+import Drawer from 'material-ui/Drawer';
+import MenuItem from 'material-ui/MenuItem';
 
-export default class Header extends React.Component {
+class Header extends React.Component {
+	constructor(props) {
+		super(props);
+		let open = this.props.open ? true : false;
+		this.state = { open: open, title: props.title };
+	}
+
+	toggleNavigation() {
+		this.setState({ open: ! this.state.open });
+	}
+
 	render() {
 		return (
-			<header>
-				<ul role="nav">
-					<li><Link to="/items">Items</Link></li>
-				</ul>
-			</header>
+				<AppBar title={this.state.title} onLeftIconButtonTouchTap={this.toggleNavigation.bind(this)}>
+					<Drawer open={this.state.open}>
+						<MenuItem linkButton={true} href="/items" primaryText="Items" />
+					</Drawer>
+				</AppBar>
 		);
 	}
 }
+
+Header.propTypes = { open: React.PropTypes.bool, title: React.PropTypes.string };
+Header.defaultProps = { open: false, title: "" };
+
+export default Header;
