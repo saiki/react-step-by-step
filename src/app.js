@@ -7,13 +7,27 @@ import Footer from './components/Footer.react';
 import Items from './components/Items.react';
 import Item from './components/Item.react';
 import { Router, Route, hashHistory } from 'react-router';
+import Radium from 'radium';
 
-export default class App extends React.Component {
+class App extends React.Component {
+
+	constructor(props) {
+		super(props);
+		this.state = { menuOpen: false }
+	}
+
+	click() {
+		this.setState({menuOpen: !this.state.menuOpen});
+	}
+
 	render() {
 		return (
-			<div>
-				<Header />
-				{this.props.children}
+			<div id="outerContainer">
+				<Header open={this.state.menuOpen} />
+				<main id="pageWrap">
+					<button onClick={this.click.bind(this)}>menu</button>
+					{this.props.children}
+				</main>
 				<Footer />
 			</div>
 		);
@@ -22,7 +36,7 @@ export default class App extends React.Component {
 
 ReactDOM.render(
 	<Router history={hashHistory}>
-		<Route path="/" component={App}>
+		<Route path="/" component={Radium(App)}>
 			<Route path="/items" component={Items}>
 				<Route path="/items/:category" component={Item}/>
 			</Route>
